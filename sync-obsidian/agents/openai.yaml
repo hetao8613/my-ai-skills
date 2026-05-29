@@ -1,0 +1,4 @@
+interface:
+  display_name: "同步 Obsidian"
+  short_description: "同步 Codex 对话到 Obsidian 知识库"
+  default_prompt: "Use $sync-obsidian to sync local Codex conversations into my Obsidian knowledge base."
