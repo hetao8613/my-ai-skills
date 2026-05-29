@@ -23,6 +23,83 @@
 
 ## 安装
 
+### 一键安装到你的 AI 工具
+
+自动检测本机已安装或已配置的直接安装工具，并安装所有 skill：
+
+```bash
+./scripts/install.sh
+```
+
+指定安装到某个工具：
+
+```bash
+./scripts/install.sh --tool codex         # Codex CLI / Codex
+./scripts/install.sh --tool claude-code   # Claude Code
+./scripts/install.sh --tool copilot       # GitHub Copilot repo instructions
+./scripts/install.sh --tool openclaw      # OpenClaw
+./scripts/install.sh --tool cursor        # Cursor
+./scripts/install.sh --tool kiro          # Kiro (Amazon)
+./scripts/install.sh --tool trae          # Trae
+./scripts/install.sh --tool opencode      # OpenCode
+./scripts/install.sh --tool aider         # Aider
+./scripts/install.sh --tool windsurf      # Windsurf
+./scripts/install.sh --tool antigravity   # Antigravity
+./scripts/install.sh --tool gemini-cli    # Gemini CLI
+./scripts/install.sh --tool qwen          # Qwen Code
+./scripts/install.sh --tool deerflow      # DeerFlow 2.0 (ByteDance)
+./scripts/install.sh --tool workbuddy     # WorkBuddy (Tencent)
+./scripts/install.sh --tool hermes        # Hermes Agent (NousResearch)
+./scripts/install.sh --tool qoder         # Qoder
+```
+
+直接安装支持：
+
+- `codex`：复制到 `${CODEX_HOME:-~/.codex}/skills`
+- `claude-code`：复制到 `~/.claude/skills`
+- `copilot`：写入目标项目的 `.github/instructions/<skill>.instructions.md`
+
+GitHub Copilot 是项目级指令，不是全局 skill 目录。建议指定目标项目：
+
+```bash
+./scripts/install.sh --tool copilot --install-dir /path/to/your/project
+```
+
+其他工具会生成转换后的导入包：
+
+```bash
+./scripts/convert.sh --tool cursor
+./scripts/convert.sh --tool gemini-cli
+```
+
+转换产物位于：
+
+```text
+dist/<tool>/<skill>/
+```
+
+然后按对应工具的自定义指令、插件或 agent 导入机制使用。
+
+查看支持的工具：
+
+```bash
+./scripts/install.sh --list-tools
+```
+
+只安装某一个 skill：
+
+```bash
+./scripts/install.sh --tool codex --skill sync-obsidian
+```
+
+预览安装动作，不写文件：
+
+```bash
+./scripts/install.sh --tool codex --dry-run
+```
+
+### 手动安装到 Codex
+
 把仓库中的 skill 目录复制到 Codex skills 目录：
 
 ```bash
