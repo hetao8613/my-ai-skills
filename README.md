@@ -23,6 +23,39 @@
 
 ## 安装
 
+### 通过 npm 安装
+
+如果还没有发布到 npm registry，可以直接从 GitHub 安装：
+
+```bash
+npm install -g github:hetao8613/my-ai-skills
+```
+
+安装后使用全局命令：
+
+```bash
+my-ai-skills install --tool codex
+my-ai-skills install --tool claude-code
+my-ai-skills install --tool copilot --install-dir /path/to/your/project
+my-ai-skills convert --tool cursor
+my-ai-skills list-tools
+```
+
+也可以不全局安装，直接用 `npx` 从 GitHub 运行：
+
+```bash
+npx github:hetao8613/my-ai-skills install --tool codex
+```
+
+如果后续发布到 npm registry，使用方式会变成：
+
+```bash
+npm install -g @hetao8613/my-ai-skills
+my-ai-skills install --tool codex
+```
+
+本仓库不会使用 npm 的 `postinstall` 自动写入用户目录。安装 npm 包只会安装命令，真正写入 AI 工具配置需要显式执行 `my-ai-skills install ...`。
+
 ### 一键安装到你的 AI 工具
 
 自动检测本机已安装或已配置的直接安装工具，并安装所有 skill：

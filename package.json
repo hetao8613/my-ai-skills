@@ -1,0 +1,34 @@
+{
+  "name": "@hetao8613/my-ai-skills",
+  "version": "0.1.0",
+  "description": "Personal AI skill collection with installer and converter scripts.",
+  "private": false,
+  "license": "MIT",
+  "author": "hetao8613",
+  "homepage": "https://github.com/hetao8613/my-ai-skills#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hetao8613/my-ai-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hetao8613/my-ai-skills/issues"
+  },
+  "bin": {
+    "my-ai-skills": "bin/my-ai-skills.js"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "sync-obsidian/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "install-skills": "scripts/install.sh",
+    "convert": "scripts/convert.sh",
+    "pack:dry-run": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
