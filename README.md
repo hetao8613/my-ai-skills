@@ -1,10 +1,10 @@
-# my-ai-skills
+# 🧰 my-ai-skills
 
 个人 Codex Skills 仓库，用于沉淀和共享可复用的 AI 工作流。
 
-## Skills
+## ✨ Skills
 
-### sync-obsidian
+### 📝 sync-obsidian
 
 `sync-obsidian` 用于把本机 Codex 会话同步到 Obsidian 知识库，生成结构化的 `codex问答库`。它适合这些场景：
 
@@ -21,9 +21,9 @@
 - 可供后续导入脚本使用的去敏 JSONL 中间记录。
 - 附件的 `file:///...` 本地引用链接。
 
-## 安装
+## 🚀 安装
 
-### 通过 npm 安装
+### 📦 通过 npm 安装
 
 如果还没有发布到 npm registry，可以直接从 GitHub 安装：
 
@@ -56,7 +56,7 @@ my-ai-skills install --tool codex
 
 本仓库不会使用 npm 的 `postinstall` 自动写入用户目录。安装 npm 包只会安装命令，真正写入 AI 工具配置需要显式执行 `my-ai-skills install ...`。
 
-### 一键安装到你的 AI 工具
+### ⚡ 一键安装到你的 AI 工具
 
 自动检测本机已安装或已配置的直接安装工具，并安装所有 skill：
 
@@ -131,7 +131,7 @@ dist/<tool>/<skill>/
 ./scripts/install.sh --tool codex --dry-run
 ```
 
-### 手动安装到 Codex
+### 🛠️ 手动安装到 Codex
 
 把仓库中的 skill 目录复制到 Codex skills 目录：
 
@@ -147,7 +147,7 @@ rm -rf ~/.codex/skills/sync-obsidian
 cp -R sync-obsidian ~/.codex/skills/sync-obsidian
 ```
 
-## 使用
+## 📖 使用
 
 在 Codex 中直接请求：
 
@@ -184,7 +184,7 @@ python scripts/export_codex_sessions_to_obsidian.py \
   --sync
 ```
 
-## 工作方式
+## 🔍 工作方式
 
 `sync-obsidian` 默认从 `$CODEX_HOME/sessions` 和 `$CODEX_HOME/session_index.jsonl` 读取会话；如果没有设置 `$CODEX_HOME`，会回退到 `~/.codex/sessions` 和 `~/.codex/session_index.jsonl`。
 
