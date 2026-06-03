@@ -20,6 +20,7 @@
     "bin/",
     "scripts/",
     "sync-obsidian/",
+    "citizen-card-standard-doc-format/",
     "README.md",
     "LICENSE"
   ],

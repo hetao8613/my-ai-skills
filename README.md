@@ -21,6 +21,22 @@
 - 可供后续导入脚本使用的去敏 JSONL 中间记录。
 - 附件的 `file:///...` 本地引用链接。
 
+### 📄 citizen-card-standard-doc-format
+
+`citizen-card-standard-doc-format` 用于把市民卡上会材料、汇报材料和方案材料统一成标准 Word/DOCX 格式，适合这些场景：
+
+- 按市民卡标准整理 `.docx` 文件版式。
+- 统一页边距、页脚、标题、各级标题和正文格式。
+- 处理手工编号、表格续页、表头重复和分页可读性。
+- 渲染核查版面，避免文字裁切、表格溢出和尾页空白。
+
+仓库中提供的相关文件：
+
+- `citizen-card-standard-doc-format/SKILL.md`
+- `citizen-card-standard-doc-format/references/format-requirements.md`
+- `citizen-card-standard-doc-format/scripts/format_citizen_card_docx.py`
+- `citizen-card-standard-doc-format/agents/openai.yaml`
+
 ## 🚀 安装
 
 ### 📦 通过 npm 安装
@@ -39,6 +55,13 @@ my-ai-skills install --tool claude-code
 my-ai-skills install --tool copilot --install-dir /path/to/your/project
 my-ai-skills convert --tool cursor
 my-ai-skills list-tools
+```
+
+安装单个 skill：
+
+```bash
+my-ai-skills install --tool codex --skill sync-obsidian
+my-ai-skills install --tool codex --skill citizen-card-standard-doc-format
 ```
 
 也可以不全局安装，直接用 `npx` 从 GitHub 运行：
@@ -91,6 +114,7 @@ my-ai-skills install --tool codex
 - `codex`：复制到 `${CODEX_HOME:-~/.codex}/skills`
 - `claude-code`：复制到 `~/.claude/skills`
 - `copilot`：写入目标项目的 `.github/instructions/<skill>.instructions.md`
+- 当前仓库中的 skill 会按目录名自动发现并分发，包括 `sync-obsidian` 和 `citizen-card-standard-doc-format`
 
 GitHub Copilot 是项目级指令，不是全局 skill 目录。建议指定目标项目：
 
@@ -123,6 +147,7 @@ dist/<tool>/<skill>/
 
 ```bash
 ./scripts/install.sh --tool codex --skill sync-obsidian
+./scripts/install.sh --tool codex --skill citizen-card-standard-doc-format
 ```
 
 预览安装动作，不写文件：
@@ -138,6 +163,7 @@ dist/<tool>/<skill>/
 ```bash
 mkdir -p ~/.codex/skills
 cp -R sync-obsidian ~/.codex/skills/sync-obsidian
+cp -R citizen-card-standard-doc-format ~/.codex/skills/citizen-card-standard-doc-format
 ```
 
 如果本地已经安装过同名 skill，先确认不需要保留本地改动，再覆盖更新：
@@ -145,6 +171,8 @@ cp -R sync-obsidian ~/.codex/skills/sync-obsidian
 ```bash
 rm -rf ~/.codex/skills/sync-obsidian
 cp -R sync-obsidian ~/.codex/skills/sync-obsidian
+rm -rf ~/.codex/skills/citizen-card-standard-doc-format
+cp -R citizen-card-standard-doc-format ~/.codex/skills/citizen-card-standard-doc-format
 ```
 
 ## 📖 使用
@@ -153,6 +181,7 @@ cp -R sync-obsidian ~/.codex/skills/sync-obsidian
 
 ```text
 $sync-obsidian 把本机 Codex 对话同步到 Obsidian
+$citizen-card-standard-doc-format 把这份 DOCX 调整成市民卡标准格式
 ```
 
 也可以在 skill 目录中手动运行脚本。
@@ -184,6 +213,12 @@ python scripts/export_codex_sessions_to_obsidian.py \
   --sync
 ```
 
+市民卡标准格式调整的脚本示例：
+
+```bash
+python3 citizen-card-standard-doc-format/scripts/format_citizen_card_docx.py input.docx --output output.docx
+```
+
 ## 🔍 工作方式
 
 `sync-obsidian` 默认从 `$CODEX_HOME/sessions` 和 `$CODEX_HOME/session_index.jsonl` 读取会话；如果没有设置 `$CODEX_HOME`，会回退到 `~/.codex/sessions` 和 `~/.codex/session_index.jsonl`。
@@ -203,3 +238,5 @@ Obsidian vault 会优先从 macOS Obsidian 配置中自动发现。同步目标�
 - Codex 附件包装文本。
 
 附件只会以本地 `file:///...` 链接引用，不会读取、复制或修改附件文件。
+
+`citizen-card-standard-doc-format` 会先把源文件复制成 `原文件名-格式调整版.docx`，再按市民卡标准统一页边距、字体、段落、编号和页脚，并通过渲染结果检查表格裁切、分页和尾页空白问题。

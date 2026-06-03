@@ -1,0 +1,3 @@
+display_name: 市民卡标准文件格式调整
+short_description: 按市民卡上会材料标准调整Word文档格式并核查版面。
+default_prompt: 请按市民卡标准文件格式调整这份DOCX材料，并渲染核查版面。
